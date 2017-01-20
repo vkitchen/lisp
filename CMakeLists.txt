@@ -10,6 +10,13 @@
 cmake_minimum_required(VERSION 2.6)
 project(Lisp)
 
+set(LISP_FILES
+		source/memory.c
+		source/parser.c
+		)
+
+add_library(LISPlib ${LISP_FILES})
+
 #
 # Build any external dependencies
 #
@@ -17,4 +24,4 @@ include_directories(external/linenoise)
 add_subdirectory(external)
 
 add_executable(lisp source/lisp.c)
-target_link_libraries(lisp linenoise)
+target_link_libraries(lisp linenoise LISPlib)

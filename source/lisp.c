@@ -1,8 +1,8 @@
 /*
-        LISP.C
-        ------
-        Copyright (c) 2017 Vaughan Kitchen
-        Released under the MIT license (https://opensource.org/licenses/MIT)
+		LISP.C
+		------
+		Copyright (c) 2017 Vaughan Kitchen
+		Released under the MIT license (https://opensource.org/licenses/MIT)
 */
 
 #include <stdio.h>
@@ -10,12 +10,13 @@
 #include "linenoise.h"
 
 int main()
-    {
-    char *line;
-    while ((line = linenoise("> ")) != NULL)
-        {
-        printf("You wrote: %s\n", line);
-        free(line);
-        }
-    return 0;
-    }
+	{
+	char *line;
+	while ((line = linenoise("> ")) != NULL)
+		{
+		printf("You wrote: %s\n", line);
+		parser_parse(line);
+		free(line);
+		}
+	return 0;
+	}

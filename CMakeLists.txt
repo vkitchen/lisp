@@ -11,6 +11,7 @@ cmake_minimum_required(VERSION 2.6)
 project(Lisp)
 
 set(LISP_FILES
+		source/dynarray.c
 		source/memory.c
 		source/parser.c
 		)

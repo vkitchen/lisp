@@ -40,7 +40,7 @@ struct node *dynarray_node_pop(dynarray_node da)
 	{
 	if (da->size == 0)
 		{
-		fprintf(stderr, "dynarray_node_pop: No more items left to pop");
+		fprintf(stderr, "dynarray_node_pop: No more items left to pop\n");
 		exit(1);
 		}
 	return da->items[--da->size];
@@ -48,9 +48,9 @@ struct node *dynarray_node_pop(dynarray_node da)
 
 struct node *dynarray_node_get(dynarray_node da, size_t pos)
 	{
-	if (!(0 < pos && pos < da->size))
+	if (!(0 <= pos && pos < da->size))
 		{
-		fprintf(stderr, "dynarray_node_get: can not get index %zd from dynamic array of length %zd", pos, da->size);
+		fprintf(stderr, "dynarray_node_get: can not get index %zd from dynamic array of length %zd\n", pos, da->size);
 		exit(1);
 		}
 	return da->items[pos];

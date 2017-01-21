@@ -8,6 +8,21 @@
 #ifndef PARSER_H_
 #define PARSER_H_
 
-void parser_parse(char *source);
+#include "dynarray.h"
+
+enum type
+	{
+	FUNC,
+	NUMBER
+	};
+
+struct node
+	{
+	enum type type;
+	char *val;
+	dynarray_node children;
+	};
+
+struct node *parser_parse(char *source);
 
 #endif

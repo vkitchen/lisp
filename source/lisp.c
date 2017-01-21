@@ -7,16 +7,19 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include "eval.h"
 #include "linenoise.h"
 #include "parser.h"
 
 int main()
 	{
 	char *line;
+	struct node *ast;
 	while ((line = linenoise("> ")) != NULL)
 		{
-		printf("You wrote: %s\n", line);
-		parser_parse(line);
+		ast = parser_parse(line);
+		eval(ast);
+		puts("");
 		free(line);
 		}
 	return 0;

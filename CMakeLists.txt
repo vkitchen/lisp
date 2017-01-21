@@ -12,6 +12,7 @@ project(Lisp)
 
 set(LISP_FILES
 		source/dynarray.c
+		source/eval.c
 		source/memory.c
 		source/parser.c
 		)

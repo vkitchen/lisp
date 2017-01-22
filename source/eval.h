@@ -10,6 +10,6 @@
 
 #include "parser.h"
 
-void eval(struct node *n);
+char *eval(struct node *n);
 
 #endif

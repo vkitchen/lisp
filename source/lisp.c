@@ -15,11 +15,12 @@ int main()
 	{
 	char *line;
 	struct node *ast;
+	char *result;
 	while ((line = linenoise("> ")) != NULL)
 		{
 		ast = parser_parse(line);
-		eval(ast);
-		puts("");
+		result = eval(ast);
+		printf("%s\n", result);
 		free(line);
 		}
 	return 0;

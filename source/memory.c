@@ -21,7 +21,7 @@ void *memory_alloc(size_t size)
 
 void *memory_realloc(void *ptr, size_t size)
 	{
-	void *p = memory_realloc(ptr, size);
+	void *p = realloc(ptr, size);
 	if (p == NULL)
 		{
 		fprintf(stderr, "memory_realloc: Failed to allocate %zd bytes memory", size);

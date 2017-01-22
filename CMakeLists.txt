@@ -14,6 +14,7 @@ set(LISP_FILES
 		source/builtin.c
 		source/dynarray.c
 		source/eval.c
+		source/file.c
 		source/memory.c
 		source/parser.c
 		)

@@ -12,10 +12,11 @@
 
 enum type
 	{
+	FLOAT64,
 	FUNC,
-	NUMBER,
 	I64,
-	FLOAT64
+	NUMBER,
+	UNIT
 	};
 
 struct node

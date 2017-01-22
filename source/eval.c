@@ -35,6 +35,8 @@ static struct node *eval_builtin(struct node *n)
 		result = builtin_multiply(length, partials);
 	else if (strcmp("/", n->val) == 0)
 		result = builtin_divide(length, partials);
+	else if (strcmp("print", n->val) == 0)
+		result = builtin_print(length, partials);
 
 	free(partials);
 	return result;
@@ -52,6 +54,8 @@ struct node *eval(struct node *n)
 	if (n->type == I64)
 		return n;
 	if (n->type == FLOAT64)
+		return n;
+	if (n->type == UNIT)
 		return n;
 	if (n->type == FUNC)
 		return eval_builtin(n);

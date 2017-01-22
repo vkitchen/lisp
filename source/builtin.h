@@ -15,5 +15,6 @@ struct node *builtin_add(int len, struct node **partials);
 struct node *builtin_subtract(int len, struct node **partials);
 struct node *builtin_multiply(int len, struct node **partials);
 struct node *builtin_divide(int len, struct node **partials);
+struct node *builtin_print(int len, struct node **partials);
 
 #endif

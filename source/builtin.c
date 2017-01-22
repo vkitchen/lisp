@@ -264,3 +264,24 @@ struct node *builtin_divide(int len, struct node **partials)
 
 	return n;
 	}
+
+struct node *builtin_print(int len, struct node **partials)
+	{
+	int i;
+	struct node *n = memory_alloc(sizeof(*n));
+
+	for (i = 0; i < len; i++)
+		{
+		if (partials[i]->type == I64)
+			printf("%d", *(long *)partials[i]->val);
+		else if (partials[i]->type == FLOAT64)
+			printf("%f", *(double *)partials[i]->val);
+		else if (partials[i]->type == NUMBER)
+			printf("%s", partials[i]->val);
+		}
+
+	n->type = UNIT;
+	n->val = NULL;
+	n->children = NULL;
+	return n;
+	}

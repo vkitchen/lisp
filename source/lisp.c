@@ -8,10 +8,26 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "eval.h"
+#include "file.h"
 #include "linenoise.h"
 #include "parser.h"
 
-int main()
+void exec_file(char *file)
+	{
+	char *buffer = read_entire_file(file);
+	if (buffer == NULL)
+		{
+		printf("file \"%s\" not found\n", file);
+		exit(1);
+		}
+
+	struct node *ast;
+	struct node *result;
+	ast = parser_parse(buffer);
+	result = eval(ast);
+	}
+
+void repl()
 	{
 	char *line;
 	struct node *ast;
@@ -32,5 +48,14 @@ int main()
 			printf("main: unkown result from eval\n");
 		free(line);
 		}
+	}
+
+int main(int argc, char **argv)
+	{
+	if (argc == 1)
+		repl();
+	else
+		exec_file(argv[1]);
+
 	return 0;
 	}

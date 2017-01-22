@@ -15,12 +15,21 @@ int main()
 	{
 	char *line;
 	struct node *ast;
-	char *result;
+	struct node *result;
 	while ((line = linenoise("> ")) != NULL)
 		{
 		ast = parser_parse(line);
 		result = eval(ast);
-		printf("%s\n", result);
+		if (result->type == NUMBER)
+			printf("%s\n", result->val);
+		else if (result->type == I64)
+			printf("%ld\n", *(long *)result->val);
+		else if (result->type == FLOAT64)
+			printf("%f\n", *(double *)result->val);
+		else if (result->type == FUNC)
+			printf("function: %s\n", result->val);
+		else
+			printf("main: unkown result from eval\n");
 		free(line);
 		}
 	return 0;

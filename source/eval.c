@@ -14,11 +14,11 @@
 #include "memory.h"
 #include "parser.h"
 
-static char *eval_builtin(struct node *n)
+static struct node *eval_builtin(struct node *n)
 	{
 	int length;
-	char **partials;
-	char *result;
+	struct node **partials;
+	struct node *result;
 	int i;
 
 	length = dynarray_node_size(n->children);
@@ -31,12 +31,16 @@ static char *eval_builtin(struct node *n)
 		result = builtin_add(length, partials);
 	else if (strcmp("-", n->val) == 0)
 		result = builtin_subtract(length, partials);
+	else if (strcmp("*", n->val) == 0)
+		result = builtin_multiply(length, partials);
+	else if (strcmp("/", n->val) == 0)
+		result = builtin_divide(length, partials);
 
 	free(partials);
 	return result;
 	}
 
-char *eval(struct node *n)
+struct node *eval(struct node *n)
 	{
 	if (n == NULL)
 		{
@@ -44,6 +48,12 @@ char *eval(struct node *n)
 		exit(1);
 		}
 	if (n->type == NUMBER)
-		return n->val;
-	return eval_builtin(n);
+		return n;
+	if (n->type == I64)
+		return n;
+	if (n->type == FLOAT64)
+		return n;
+	if (n->type == FUNC)
+		return eval_builtin(n);
+	fprintf(stderr, "eval: node type unknown\n");
 	}

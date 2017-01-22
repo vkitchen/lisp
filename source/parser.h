@@ -13,13 +13,15 @@
 enum type
 	{
 	FUNC,
-	NUMBER
+	NUMBER,
+	I64,
+	FLOAT64
 	};
 
 struct node
 	{
 	enum type type;
-	char *val;
+	void *val;
 	dynarray_node children;
 	};
 
